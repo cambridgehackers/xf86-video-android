@@ -308,7 +308,7 @@ AndroidProbe(DriverPtr drv, int flags)
 
 	    dev = xf86FindOptionValue(devSections[i]->options,"android");
 	    if (devSections[i]->busID) {
-#ifndef XSERVER_LIBPCIACCESS
+#if 0 //ndef XSERVER_LIBPCIACCESS
 	        if (xf86ParsePciBusString(devSections[i]->busID,&bus,&device,
 					  &func)) {
 		    if (!xf86CheckPciSlot(bus,device,func))
@@ -327,7 +327,7 @@ AndroidProbe(DriverPtr drv, int flags)
 	    if (androidHWProbe(NULL,dev,NULL)) {
 		pScrn = NULL;
 		if (isPci) {
-#ifndef XSERVER_LIBPCIACCESS
+#if 0 //ndef XSERVER_LIBPCIACCESS
 		    /* XXX what about when there's no busID set? */
 		    int entity;
 		    
