@@ -854,6 +854,7 @@ AndroidScreenInit(SCREEN_INIT_ARGS_DECL)
 	miDCInitialize(pScreen, xf86GetPointerScreenFuncs());
 
 	/* colormap */
+#if 0
 	switch ((type = androidHWGetType(pScrn)))
 	{
 	/* XXX It would be simpler to use miCreateDefColormap() in all cases. */
@@ -886,6 +887,7 @@ AndroidScreenInit(SCREEN_INIT_ARGS_DECL)
 			   "(%d) encountered in AndroidScreenInit()\n", type);
 		return FALSE;
 	}
+#endif
 	flags = CMAP_PALETTED_TRUECOLOR;
 	if(!xf86HandleColormaps(pScreen, 256, 8, androidHWLoadPaletteWeak(), 
 				NULL, flags))
