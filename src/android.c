@@ -28,7 +28,7 @@
 #include "xf86RAC.h"
 #endif
 
-#include "androidhw.h"
+//#include "androidhw.h"
 
 #include "xf86xv.h"
 
@@ -411,7 +411,7 @@ AndroidPreInit(ScrnInfoPtr pScrn, int flags)
 
 	fPtr->pEnt = xf86GetEntityInfo(pScrn->entityList[0]);
 
-#ifndef XSERVER_LIBPCIACCESS
+#if 0 //ndef XSERVER_LIBPCIACCESS
 	pScrn->racMemFlags = RAC_FB | RAC_COLORMAP | RAC_CURSOR | RAC_VIEWPORT;
 	/* XXX Is this right?  Can probably remove RAC_FB */
 	pScrn->racIoFlags = RAC_FB | RAC_COLORMAP | RAC_CURSOR | RAC_VIEWPORT;
@@ -547,6 +547,7 @@ AndroidPreInit(ScrnInfoPtr pScrn, int flags)
 	xf86SetDpi(pScrn, 0, 0);
 
 	/* Load bpp-specific modules */
+#if 0
 	switch ((type = androidHWGetType(pScrn)))
 	{
 	case FBDEVHW_PACKED_PIXELS:
@@ -587,6 +588,7 @@ AndroidPreInit(ScrnInfoPtr pScrn, int flags)
                           "unrecognised android hardware type (%d)\n", type);
                return FALSE;
 	}
+#endif
 	if (xf86LoadSubModule(pScrn, "fb") == NULL) {
 		AndroidFreeRec(pScrn);
 		return FALSE;
@@ -748,6 +750,7 @@ AndroidScreenInit(SCREEN_INIT_ARGS_DECL)
 	    }
 	}
 
+#if 0
 	switch ((type = androidHWGetType(pScrn)))
 	{
 	case FBDEVHW_PACKED_PIXELS:
@@ -802,6 +805,7 @@ AndroidScreenInit(SCREEN_INIT_ARGS_DECL)
 		ret = FALSE;
 		break;
 	}
+#endif
 	if (!ret)
 		return FALSE;
 
